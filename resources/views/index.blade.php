@@ -19,32 +19,66 @@
 <section id="home" class="min-h-screen w-full bg-cover bg-center relative" style="background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url('assets/img/Banner/Antonov.png');">
 
     <!--Nav-->
-    <nav class="flex items-center justify-between fixed top-0 left-0 z-[900] w-[100%] px-6 py-2 transition-all duration-300 bg-transparent">
-    <a href="#"><img src="assets/img/logo/logo.png" class="w-[150px]"></a>
-    <div class="nav-links flex justify-end items-center w-full" id="navLinks">
+    <nav class="flex items-center justify-between fixed top-0 left-0 z-[900] w-[100%] px-6 py-2 bg-transparent">
+    <!-- Logo -->
+    <a href="{{ route('index') }}">
+        <img src="assets/img/logo/logo.png" class="w-[150px]" />
+    </a>
+
+    <!-- Navigation Links -->
+    <div class="nav-links flex justify-end items-center w-full space-x-4" id="navLinks">
         <i class="fa hidden fa-times text-white text-2xl cursor-pointer" onclick="hideMenu()"></i>
         <ul class="flex space-x-4">
-            <li class="relative group">
+            <li>
                 <a href="#home" class="text-white text-sm no-underline p-2">Home</a>
             </li>
-            <li class="relative group">
+            <li>
                 <a href="#history" class="text-white text-sm no-underline p-2">History</a>
             </li>
-            <li class="relative group">
-                <a href="#safety" class="text-white text-sm no-underline p-2">Aviation safety</a>
+            <li>
+                <a href="#safety" class="text-white text-sm no-underline p-2">Aviation Safety</a>
             </li>
-            <li class="relative group">
+            <li>
                 <a href="#contact" class="text-white text-sm no-underline p-2">Contact Us</a>
             </li>
-            <li class="relative group">
-                @if (Route::has('login'))
-                    <livewire:welcome.navigation />
-                @endif
-            </li>
+
+            <!-- Authentication -->
+            @if (Route::has('login'))
+                @auth
+                    <!-- Dropdown for logged-in users -->
+                    <li class="relative group" x-data="{ open: false }">
+                        <button @click="open = !open" class="text-white text-sm no-underline p-2 flex items-center">
+                            <span>{{ auth()->user()->name }}</span>
+                            <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                            </svg>
+                        </button>
+                        <ul x-show="open" @click.outside="open = false" class="absolute bg-white text-gray-700 rounded-md shadow-lg mt-2 w-48 right-0">
+                            <li>
+                                <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+                            </li>
+                            <li>
+                                <button wire:click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Log Out</button>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <!-- Links for guests -->
+                    <li>
+                        <a href="{{ route('login') }}" class="text-white text-sm no-underline p-2">Login</a>
+                    </li>
+                    @if (Route::has('register'))
+                        <li>
+                            <a href="{{ route('register') }}" class="text-white text-sm no-underline p-2">Register</a>
+                        </li>
+                    @endif
+                @endauth
+            @endif
         </ul>
     </div>
     <i class="fa hidden fa-bars text-white text-2xl cursor-pointer" onclick="showMenu()"></i>
 </nav>
+
 
 
     <div class="w-[90%] text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
@@ -60,44 +94,30 @@
 <section class="w-[80%] m-auto text-center pt-[100px]">
     <h1>News</h1>
     <p>Antonov Company Last News</p>
-    <div class="mt-5 mb-10 flex justify-between">
-        <div class="basis-[31%] bg-[#D6CFC7] rounded-lg mb-8 mr-3 box-border transition duration-500 py-6 hover:shadow-[0_0_40px_0px_rgba(0,0,0,0.2)]"> 
-            <a class="no-underline text-black" href="#">
-            <h3>
-                Oleg Antonov's 
-            </h3>
-            <p>
-                February 7, 2022, is the 116th anniversary of birthday
-                of Oleg Antonov, a great aircraft designer, talented scientist
-                , founder of ANTONOV COMPANY.
-            </p>
-            </a>
-        </div>
+    <div class="mt-5 mb-10 flex flex-wrap justify-between">
+        @foreach ($news as $item)
         <div class="basis-[31%] bg-[#D6CFC7] rounded-lg mb-8 mr-3 box-border transition duration-500 py-6 hover:shadow-[0_0_40px_0px_rgba(0,0,0,0.2)]">
             <a class="no-underline text-black" href="#">
-            <h3>
-                Antonov 124-100 
-            </h3>
-            <p>
-                The Antonov International AN124-100,
-                successfully landed and took off at Kertajati West Java International 
-                Airport (BIJB) in Majalengka Regency, on Wednesday, March 22 2023.
-            </p>
+                <!-- Gambar Berita -->
+                @if($item->image)
+                    <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" class="w-full h-64 object-cover rounded-t-lg">
+                @else
+                    <img src="https://via.placeholder.com/600x400" alt="Placeholder Image" class="w-full h-64 object-cover rounded-t-lg">
+                @endif
+                <div class="p-4">
+                    <h3 class="text-xl font-bold">
+                        {{ $item->title }}
+                    </h3>
+                    <p class="mt-2 text-gray-700">
+                        {{ Str::limit($item->content, 150, '...') }}
+                    </p>
+                </div>
             </a>
         </div>
-        <div class="basis-[31%] bg-[#D6CFC7] rounded-lg mb-8 mr-3 box-border transition duration-500 py-6 hover:shadow-[0_0_40px_0px_rgba(0,0,0,0.2)]">
-            <a class="no-underline text-black" href="#">
-            <h3>
-                Antonov 225 Destroyed
-            </h3>
-            <p>
-                The Antonov 225 plane was reportedly destroyed on the fourth day of Russia's invasion of Ukraine.
-                The largest of all aircraft in operational service--was destroyed by the explosion.
-            </p>
-            </a>
-        </div>
+        @endforeach
     </div>
 </section>
+
 
 <!-- For Responsive Nav-->
 <div class="menu-btn" ></div>
@@ -374,7 +394,7 @@
     <p>www.antonov.com</p>
 </section>
 
-<script src="assets/js/script.js"></script>
+<script src="//unpkg.com/alpinejs" defer></script>
 
 </body>
 </html>

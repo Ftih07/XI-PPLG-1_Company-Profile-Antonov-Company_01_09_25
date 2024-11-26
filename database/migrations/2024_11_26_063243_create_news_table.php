@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('title'); // Judul berita
-            $table->text('content'); // Isi berita
-            $table->string('image')->nullable(); // URL gambar berita
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // User yang membuat
-            $table->timestamps(); // Tanggal dibuat dan diperbarui
-        });
+            $table->string('title');
+            $table->text('content');
+            $table->string('image')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Kolom user_id wajib diisi
+            $table->timestamps();
+        });        
     }
 
     /**
