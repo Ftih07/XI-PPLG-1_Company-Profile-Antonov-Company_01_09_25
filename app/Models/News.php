@@ -9,22 +9,16 @@ class News extends Model
 {
     use HasFactory;
 
-    /**
-     * Fillable fields for mass assignment.
-     */
     protected $fillable = [
         'title',
         'content',
         'image',
-        'author_id',
+        'user_id',
     ];
 
-    /**
-     * Relasi ke model Author.
-     * Setiap berita memiliki satu author.
-     */
-    public function author()
+    // Relasi dengan User
+    public function user()
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsTo(User::class);
     }
 }

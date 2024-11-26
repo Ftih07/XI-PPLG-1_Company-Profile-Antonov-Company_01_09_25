@@ -3,64 +3,47 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\NewsResource\Pages;
-use App\Filament\Resources\NewsResource\RelationManagers;
 use App\Models\News;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Resources\Resource; // Resource tetap di namespace Resources
+use Filament\Forms\Form; // Pastikan menggunakan Filament\Forms\Form
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 
 class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                //
-                Forms\Components\TextInput::make('title')->required(),
-                Forms\Components\RichEditor::make('content')->required(),
-                Forms\Components\FileUpload::make('image'),
-                Forms\Components\Select::make('author_id')
-                    ->relationship('author', 'name') // Relasi ke authors
-                    ->required(),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('title')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\RichEditor::make('content')
+                ->required(),
+            Forms\Components\FileUpload::make('image')
+                ->image()
+                ->required(),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
-                //
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('author.name')->label('Author'), // Menampilkan nama author
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')->dateTime(),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+        return $table->columns([
+            TextColumn::make('title')->sortable()->searchable(),
+            ImageColumn::make('image')->label('News Image'),
+            TextColumn::make('user.name')->label('Author'),
+            TextColumn::make('created_at')->dateTime()->label('Published At'),
+        ])->filters([]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

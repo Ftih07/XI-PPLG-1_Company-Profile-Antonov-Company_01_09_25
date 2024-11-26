@@ -20,30 +20,33 @@
 
     <!--Nav-->
     <nav class="flex items-center justify-between fixed top-0 left-0 z-[900] w-[100%] px-6 py-2 transition-all duration-300 bg-transparent">
-        <a href="#"><img src="assets/img/logo/logo.png" class="w-[150px]"></a>
-        <div class="nav-links flex justify-end items-center w-full" id="navLinks">
+    <a href="#"><img src="assets/img/logo/logo.png" class="w-[150px]"></a>
+    <div class="nav-links flex justify-end items-center w-full" id="navLinks">
         <i class="fa hidden fa-times text-white text-2xl cursor-pointer" onclick="hideMenu()"></i>
-            <ul class="flex space-x-4">
-                <li class="relative group">
-                    <a href="#home" class="text-white text-sm no-underline p-2">Home</a>
-                    <div class="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-1000"></div>
-                 </li>
-                <li class="relative group">
-                    <a href="#history" class="text-white text-sm no-underline p-2">History</a>
-                    <div class="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-1000"></div>
-                 </li>
-                <li class="relative group">
-                    <a href="#safety" class="text-white text-sm no-underline p-2">Aviation safety</a>
-                    <div class="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-1000"></div>
-                </li>
-                <li class="relative group">
-                     <a href="#contact" class="text-white text-sm no-underline p-2">Contact Us</a>
-                    <div class="absolute bottom-0 left-0 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-1000"></div>
-                </li>
-            </ul>
-        </div>
-        <i class="fa hidden fa-bars text-white text-2xl cursor-pointer" onclick="showMenu()"></i>
-    </nav>
+        <ul class="flex space-x-4">
+            <li class="relative group">
+                <a href="#home" class="text-white text-sm no-underline p-2">Home</a>
+            </li>
+            <li class="relative group">
+                <a href="#history" class="text-white text-sm no-underline p-2">History</a>
+            </li>
+            <li class="relative group">
+                <a href="#safety" class="text-white text-sm no-underline p-2">Aviation safety</a>
+            </li>
+            <li class="relative group">
+                <a href="#contact" class="text-white text-sm no-underline p-2">Contact Us</a>
+            </li>
+            <li class="relative group">
+                @if (Route::has('login'))
+                    <livewire:welcome.navigation />
+                @endif
+            </li>
+        </ul>
+    </div>
+    <i class="fa hidden fa-bars text-white text-2xl cursor-pointer" onclick="showMenu()"></i>
+</nav>
+
+
     <div class="w-[90%] text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
         <h1 class="text-[62px]">Antonov Company</h1>
         <p class="my-2.5 text-[14px] text-white">The company that makes the largest cargo plane in human history<br>

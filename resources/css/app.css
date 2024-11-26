@@ -1,27 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-h1 {
-    @apply text-3xl font-semibold;
+
+/* Menambahkan gaya untuk nav yang sticky */
+nav.sticky {
+    background-color: rgba(0, 0, 0, 0.8); /* Warna background saat sticky */
+    padding: 1% 6%; /* Menyusutkan padding saat sticky */
 }
 
-p {
-    @apply text-gray-500 text-sm font-light leading-[22px] p-2;
+nav img{
+    width: 150px;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+.nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+.nav-links ul li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #fff;
+    display: block;
+    margin: auto;
+    transition: 1s;
+}
+.nav-links ul li:hover:after{
+    width: 100%;
+}
+.text-box{
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
 }
 
-h3 {
-    @apply text-center font-semibold my-2;
+.text-box h1{
+    font-size: 62px;
+}
+.text-box p{
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: #fff;
+}
+.hero-btn{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.hero-btn:hover{
+    border: 1px solid #1E90FF;
+    background: #1E90FF;
+    transition: 1s;
 }
 
-/* Apply Nav Sticky and Background Black 0.8 if scroll more than 100vh (in JavaScript) */
-.sticky {
-    background-color: rgba(0, 0, 0, 0.8); 
-    padding: 1% 6%;
+nav .fa{
+    display: none;
 }
-
 
 @media(max-width: 700px){
     .text-box h1{
@@ -54,6 +109,55 @@ h3 {
     }
 }
 
+
+
+.course{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+
+p{
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+
+.row{
+    margin-top: 5%;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.course-col{
+    flex-basis: 31%;
+    background: #D6CFC7;
+    border-radius: 10px;
+    margin-bottom: 30px 12px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    padding: 25px 0;
+}
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0;
+}
+.course-col a{
+    text-decoration: none;
+    color: #000;
+}
+.course-col:hover{
+    box-shadow: 0 0 40px 0px rgba(0,0,0,0.2);
+}
 @media(max-width: 700px){
     .row{
         flex-direction: column;
@@ -65,14 +169,180 @@ h3 {
     }
 }
 
-/* Top Airplane - Hover H3 */
 
+.picture{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.picture-col{
+    flex-basis: 32%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.picture-col img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+/*layerr*/
+.layer{
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+}
+.layer:hover{
+    background: rgba(30,144,255 ,0.7);
+}
+.layer h3{
+    width: 100%;
+    font-weight: 500;
+    color: #fff;
+    font-size: 26px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    opacity: 0;
+    transition: 0.5s;
+}
 .layer:hover h3{
     bottom: 44%;
     opacity: 1;
 }
 
-/*Video - later*/
+/*---industries*/
+
+.bemine{
+    width:80%;
+    margin: auto;
+    text-align:center;
+    padding-top: 100px;
+}
+
+.industri{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.industri img{
+    display: space-between;
+    width: 100%;
+    height: 65%;
+    border-radius: 13px;
+    margin: 3px;
+    box-shadow: 4px 7px 7px 0px #00000042;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.industri img:hover{
+    filter:saturate(2);
+    transform: scale(1.09);
+
+}
+
+.industri p{
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #1b2b3e;
+}
+.rowa{
+    margin-top: 5%;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*----direction*/
+
+.direction-go{
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.direction-go img{
+    border-radius: 13px;
+    width: 250px;
+    box-shadow: 4px 7px 7px 0px #00000042;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.direction-go img:hover{
+    transform: scale(1.09);
+}
+
+.direction-go p{
+    font-size: 14px;
+    color: #1b2b3e;
+}
+
+.direction-go h3{
+    font-size: 19px;
+    margin-top: 0;
+}
+
+/*contact and footer*/
+
+.banner{
+    margin: 100px auto;
+    min-height: 140vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(assets/img/Banner/airlines-contacts-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+}
+.banner img{
+    position: center;
+    padding-top: 15%;
+}
+
+.banner h1{
+    color: #fff;
+    font-size: 62px;
+}
+.banner h4{
+    color: #dadada;
+    font-size: 33px;
+}
+.banner p{
+    font-size: 23px;
+    color: #b5b5b5;
+}
+
+.footer{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+}
+.footer h4{
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+.icons .fab{
+    color: #1E90FF;
+    margin: 0 13px;
+    cursor: pointer;
+    padding: 18px 0;
+}
+
+
+/*anomali*/
 
 .home{
     position: relative;
@@ -209,6 +479,130 @@ h3 {
     transition: 2s ease;
     transition-property: clip-path;
 }
+
+/*Anomali Aviation Safety*/
+
+.sec-01{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 100px;
+    color: #111222;
+}
+
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+  
+  .main-title{
+    font-size: 3em;
+    margin-bottom: 50px;
+  }
+  
+  .content{
+    position: relative;
+    width: 1150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content .image{
+    position: relative;
+    width: 800px;
+    height: 400px;
+    overflow: hidden;
+  }
+  
+  .content .image img{
+    z-index: 111;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .content .text-box2{
+    z-index: 222;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    max-width: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transform: translate(-80px, 50px);
+  }
+  
+  .content .text-box2 h3{
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  .content .text-box2 p{
+      font-size: 12px;
+  }
+  .media-icons{
+    margin-top: 100px;
+  }
+  
+  .media-icons a{
+    color: #000;
+    font-size: 2em;
+    margin: 60px;
+  }
+  .section-title{
+      font-size: 3em;
+      margin-bottom: 80px;
+  }
+  .info-title{
+      font-size: 1.8em;
+      margin-bottom: 50px;
+  }
+  .info{
+      width: 700px;
+      margin-left: 50px;
+  }
+  
+  .media-info{
+    width: 400px;
+    margin-left: 50px;
+  }
+  .media-info li{
+    list-style: none;
+    font-size: 1.4em;
+  }
+  .media-info li a{
+    color: #000;
+    text-decoration: none;
+  }
+  .media-info li:not(:last-child){
+    margin-bottom: 50px;
+  }
+  .media-info li:nth-child(1), .media-info li:nth-child(4){
+    padding-left: 50px;
+  }
+  .sec-03{
+    margin-bottom: 100px;
+    padding: 80px 100px;
+  }
+  .sec-02{
+    padding: 80px 100px;
+
+  }
+  #safety {
+    scroll-margin-top: 50px; 
+  }
+  #contact {
+    scroll-margin-top: 140px; 
+  }
 
 @media (max-width: 1040px) {
     header{
