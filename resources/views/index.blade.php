@@ -124,9 +124,9 @@
                 data-author="{{ $item->user ? $item->user->name : 'Unknown' }}">
                 <!-- Gambar Berita -->
                 @if($item->image)
-                    <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" class="w-full h-64 object-cover rounded-t-lg">
+                    <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" class="w-full object-cover rounded-t-lg">
                 @else
-                    <img src="https://via.placeholder.com/600x400" alt="Placeholder Image" class="w-full h-64 object-cover rounded-t-lg">
+                    <img src="https://via.placeholder.com/600x400" alt="Placeholder Image" class="w-full object-cover rounded-t-lg">
                 @endif
                 <div class="p-4">
                     <h3 class="text-xl font-bold">
@@ -250,51 +250,17 @@
 <section class="w-[80%] m-auto text-center pt-[100px]">
     <h1>INDUSTRIES</h1>
 
-    <div class="mt-[5%] mb-[10%] flex justify-between">
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/energy.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Energy</p>
-        </div>
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/oil & gas.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Oil & Gas</p>
-        </div>
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/automobile.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Automobile</p>
-        </div>
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/intermodal.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Intermodal</p>
-        </div>
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/trains.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Trains</p>
-        </div>
+    <div class="mt-[5%] mb-[10%] flex justify-between flex-wrap">
+        @foreach ($industries as $industry)
+            <div class="flex flex-wrap items-center justify-center w-[18%] m-[1%]">
+                <img 
+                    src="{{ asset('storage/' . $industry->image) }}" 
+                    alt="{{ $industry->name }}" 
+                    class="w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
+                <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">{{ $industry->name }}</p>
+            </div>
+        @endforeach
     </div>
-    <div class="mt-[5%] mb-[10%] flex justify-between">
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/helicopters.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Helicopters</p>
-        </div>
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/aerospace.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Aerospace</p>
-        </div>
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/maritime.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Maritime</p>
-        </div>
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/industrial.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Industrial</p>
-        </div>
-        <div class="flex flex-wrap items-center justify-center">
-            <img src="assets/img/industries/humanity.png" class="flex justify-between w-full h-[65%] rounded-[13px] m-[3px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:saturate-200 hover:scale-110">
-            <p class="text-[16px] font-bold uppercase text-[#1b2b3e]">Humanity</p>
-        </div>
-    </div>
-
 </section>
 
 
@@ -303,29 +269,44 @@
     <h1>Chief Designers</h1>
 
     <div class="mt-20 mb-10 flex justify-between">
+        @foreach ($chiefDesigners as $designer)
         <div class="flex-wrap items-center justify-center">
-            <img src="assets/img/Chief_Designers/Olegantonov.jpg" class="w-[250px] rounded-[13px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:scale-105">
+            <!-- Menampilkan gambar -->
+            <img 
+                src="{{ asset('storage/' . $designer->image) }}" 
+                alt="{{ $designer->name }}" 
+                class="w-[250px] rounded-[13px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:scale-105"
+                data-modal-target="modal-{{ $designer->id }}" 
+                data-modal-toggle="modal-{{ $designer->id }}"
+            >
+            <!-- Menampilkan periode -->
             <p class="text-sm text-[#1b2b3e]">
-                1946-1984
+                {{ $designer->period }}
             </p>
-            <h3 class="text-sm mt-0">Oleg Antonov</h3>
+            <!-- Menampilkan nama -->
+            <h3 class="text-sm mt-0">
+                {{ $designer->name }}
+            </h3>
+
+            <!-- Modal -->
+            <div id="modal-{{ $designer->id }}" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div class="bg-white w-[80%] md:w-[500px] p-4 rounded-lg">
+        <h2 class="text-xl font-semibold mb-4">About {{ $designer->name }}</h2>
+        <p>{{ $designer->description }}</p>
+        <button 
+            data-modal-hide="modal-{{ $designer->id }}" 
+            class="mt-4 bg-red-500 text-white py-2 px-4 rounded"
+        >
+            Close
+        </button>
+    </div>
+</div>
+
         </div>
-        <div class="flex-wrap items-center justify-center">
-            <img src="assets/img/Chief_Designers/Petro_Balabuyev.jpg" class="w-[250px] rounded-[13px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:scale-105">
-            <p class="text-sm text-[#1b2b3e]">
-                1984-2005
-            </p>
-            <h3 class="text-sm mt-0">Petro Balabuiev</h3>
-        </div>
-        <div class="flex-wrap items-center justify-center">
-            <img src="assets/img/Chief_Designers/Dmytro_Kiva.jpg" class="w-[250px] rounded-[13px] shadow-[4px_7px_7px_0px_rgba(0,0,0,0.26)] cursor-pointer transition duration-1000 hover:scale-105">
-            <p class="text-sm text-[#1b2b3e]">
-                Since 2005
-            </p>
-            <h3 class="text-sm mt-0">Dmytro Kiva</h3>
-        </div>
+        @endforeach
     </div>
 </section>
+
 
 <!---Aviation Safety-->
 <section id="safety" class="sec-01 scroll-mt-[50px] relative flex justify-center items-center py-20 px-24 text-[#111222]">
@@ -449,7 +430,7 @@
 <script>
     const newsModal = document.getElementById('newsModal');
     newsModal.addEventListener('show.bs.modal', function (event) {
-        const button = event.relatedTarget; // Tombol yang diklik
+        const button = event.relatedTarget; 
         const title = button.getAttribute('data-title');
         const content = button.getAttribute('data-content');
         const image = button.getAttribute('data-image');
@@ -466,13 +447,31 @@
         if (image) {
             modalImage.src = "{{ asset('storage/') }}" + '/' + image;
         } else {
-            modalImage.src = 'https://via.placeholder.com/600x400'; // Default image
+            modalImage.src = 'https://via.placeholder.com/600x400'; 
         }
 
-        // Menampilkan nama author
-        modalAuthor.textContent = author; // Menampilkan nama author
+        modalAuthor.textContent = author;
 
         console.log("Author:", author);
+    });
+
+
+    //Chief Designers
+
+    document.querySelectorAll('[data-modal-toggle]').forEach(item => {
+        item.addEventListener('click', (event) => {
+            const target = event.target.getAttribute('data-modal-toggle');
+            const modal = document.getElementById(target);
+            modal.classList.remove('hidden');
+        });
+    });
+
+    document.querySelectorAll('[data-modal-hide]').forEach(item => {
+        item.addEventListener('click', (event) => {
+            const target = event.target.getAttribute('data-modal-hide');
+            const modal = document.getElementById(target);
+            modal.classList.add('hidden');
+        });
     });
 </script>
 
