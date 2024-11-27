@@ -8,17 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
-    // Menampilkan daftar berita
     public function index()
     {
-        // Ambil data berita dari database
         $news = News::orderBy('created_at', 'desc')->get();
 
-        // Kirim data $news ke view 'index' (bukan 'news.index')
         return view('index', compact('news'));
     }
 
-    // Menyimpan berita baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -27,12 +23,11 @@ class NewsController extends Controller
             'image' => 'nullable|string',
         ]);
     
-        // Isi user_id secara otomatis
         News::create([
             'title' => $validated['title'],
             'content' => $validated['content'],
             'image' => $validated['image'] ?? null,
-            'user_id' => Auth::id(), // ID pengguna yang login
+            'user_id' => Auth::id(),
         ]);
     
         return redirect()->back()->with('success', 'Berita berhasil ditambahkan.');

@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://unpkg.com/scrollreveal"></script>
     @vite('resources/css/app.css')
 </head>
@@ -97,7 +103,11 @@
     <div class="mt-5 mb-10 flex flex-wrap justify-between">
         @foreach ($news as $item)
         <div class="basis-[31%] bg-[#D6CFC7] rounded-lg mb-8 mr-3 box-border transition duration-500 py-6 hover:shadow-[0_0_40px_0px_rgba(0,0,0,0.2)]">
-            <a class="no-underline text-black" href="#">
+            <a class="no-underline text-black" href="#" data-bs-toggle="modal" data-bs-target="#newsModal"
+                data-title="{{ $item->title }}"
+                data-content="{{ strip_tags($item->content) }}"
+                data-image="{{ $item->image }}"
+                data-author="{{ $item->user ? $item->user->name : 'Unknown' }}">
                 <!-- Gambar Berita -->
                 @if($item->image)
                     <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" class="w-full h-64 object-cover rounded-t-lg">
@@ -109,14 +119,38 @@
                         {{ $item->title }}
                     </h3>
                     <p class="mt-2 text-gray-700">
-                        {{ Str::limit($item->content, 150, '...') }}
+                        {{ Str::limit(strip_tags($item->content), 150, '...') }}
                     </p>
                 </div>
             </a>
         </div>
         @endforeach
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newsModal" tabindex="-1" aria-labelledby="newsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newsModalLabel">News Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Gambar Berita -->
+                    <img id="modalImage" src="" alt="News Image" class="w-full h-64 object-cover mb-4 rounded-lg">
+                    <!-- Content News -->
+                    <p id="modalContent"></p>
+                </div>
+                <p class="mt-4 font-semibold">Author: <span id="modalAuthor"></span></p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+
 
 
 <!-- For Responsive Nav-->
@@ -395,6 +429,38 @@
 </section>
 
 <script src="//unpkg.com/alpinejs" defer></script>
+
+<script>
+    const newsModal = document.getElementById('newsModal');
+    newsModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget; // Tombol yang diklik
+        const title = button.getAttribute('data-title');
+        const content = button.getAttribute('data-content');
+        const image = button.getAttribute('data-image');
+        const author = button.getAttribute('data-author');
+
+        const modalTitle = newsModal.querySelector('.modal-title');
+        const modalBody = newsModal.querySelector('#modalContent');
+        const modalImage = newsModal.querySelector('#modalImage');
+        const modalAuthor = newsModal.querySelector('#modalAuthor');
+
+        modalTitle.textContent = title;
+        modalBody.innerHTML = content;
+
+        if (image) {
+            modalImage.src = "{{ asset('storage/') }}" + '/' + image;
+        } else {
+            modalImage.src = 'https://via.placeholder.com/600x400'; // Default image
+        }
+
+        // Menampilkan nama author
+        modalAuthor.textContent = author; // Menampilkan nama author
+
+        console.log("Author:", author);
+    });
+</script>
+
+
 
 </body>
 </html>

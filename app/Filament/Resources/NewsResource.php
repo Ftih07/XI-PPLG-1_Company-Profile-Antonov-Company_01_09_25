@@ -19,26 +19,38 @@ class NewsResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form->schema([
-            Forms\Components\TextInput::make('title')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\RichEditor::make('content')
-                ->required(),
-            Forms\Components\FileUpload::make('image')
-                ->image()
-                ->required(),
-        ]);
+        return $form
+            ->schema([
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\RichEditor::make('content')
+                    ->required(),
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->required(),
+                    Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name') 
+                    ->required() 
+                    ->label('Author')                
+            ]);
     }
+    
 
     public static function table(Table $table): Table
     {
-        return $table->columns([
+        return $table->
+        columns([
             TextColumn::make('title')->sortable()->searchable(),
             ImageColumn::make('image')->label('News Image'),
             TextColumn::make('user.name')->label('Author'),
             TextColumn::make('created_at')->dateTime()->label('Published At'),
-        ])->filters([]);
+        ])->filters([
+            //
+        ])
+        ->actions([
+            Tables\Actions\EditAction::make(),
+        ]);
     }
 
     public static function getRelations(): array
