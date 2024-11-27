@@ -32,8 +32,9 @@
     </a>
 
     <!-- Navigation Links -->
-    <div class="nav-links flex justify-end items-center w-full space-x-4" id="navLinks">
-        <i class="fa hidden fa-times text-white text-2xl cursor-pointer" onclick="hideMenu()"></i>
+    <div class="nav-links flex justify-between items-center w-full px-4" id="navLinks">
+    <!-- Menu Utama (Tengah) -->
+    <div class="flex space-x-4 mx-auto">
         <ul class="flex space-x-4">
             <li>
                 <a href="#home" class="text-white text-sm no-underline p-2">Home</a>
@@ -47,29 +48,40 @@
             <li>
                 <a href="#contact" class="text-white text-sm no-underline p-2">Contact Us</a>
             </li>
+            <li>
+                <a href="{{ route('dashboard') }}" class="text-white text-sm no-underline p-2">Dashboard</a>
+            </li>
+        </ul>
+    </div>
 
-            <!-- Authentication -->
-            @if (Route::has('login'))
-                @auth
-                    <!-- Dropdown for logged-in users -->
-                    <li class="relative group" x-data="{ open: false }">
-                        <button @click="open = !open" class="text-white text-sm no-underline p-2 flex items-center">
-                            <span>{{ auth()->user()->name }}</span>
-                            <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-                            </svg>
-                        </button>
-                        <ul x-show="open" @click.outside="open = false" class="absolute bg-white text-gray-700 rounded-md shadow-lg mt-2 w-48 right-0">
-                            <li>
-                                <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
-                            </li>
-                            <li>
-                                <button wire:click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Log Out</button>
-                            </li>
-                        </ul>
-                    </li>
-                @else
-                    <!-- Links for guests -->
+    <!-- Authentication (Sebelah Kanan) -->
+    <div>
+        @if (Route::has('login'))
+            @auth
+                <!-- Dropdown for logged-in users -->
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="text-white text-sm no-underline p-2 flex items-center">
+                        <span>{{ auth()->user()->name }}</span>
+                        <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <ul x-show="open" @click.outside="open = false" class="absolute bg-white text-gray-700 rounded-md shadow-lg mt-2 w-48 right-0 z-10">
+                        <li>
+                            <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
+                        </li>
+                        <li>
+                            <form>
+                                @csrf
+                                <button type="submit" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Log Out</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <!-- Links for guests -->
+                <ul class="flex space-x-4">
                     <li>
                         <a href="{{ route('login') }}" class="text-white text-sm no-underline p-2">Login</a>
                     </li>
@@ -78,10 +90,12 @@
                             <a href="{{ route('register') }}" class="text-white text-sm no-underline p-2">Register</a>
                         </li>
                     @endif
-                @endauth
-            @endif
-        </ul>
+                </ul>
+            @endauth
+        @endif
     </div>
+</div>
+
     <i class="fa hidden fa-bars text-white text-2xl cursor-pointer" onclick="showMenu()"></i>
 </nav>
 
@@ -429,6 +443,8 @@
 </section>
 
 <script src="//unpkg.com/alpinejs" defer></script>
+
+<script src="assets/js/script.js"></script>
 
 <script>
     const newsModal = document.getElementById('newsModal');
