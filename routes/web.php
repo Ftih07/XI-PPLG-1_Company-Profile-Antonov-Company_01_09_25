@@ -5,7 +5,9 @@
     use App\Http\Controllers\NewsController;
     use App\Http\Controllers\IndustryController;
     use App\Http\Controllers\ChiefDesignerController;
-
+    use App\Http\Controllers\AirplaneController;
+    use App\Http\Controllers\ContactController;
+    use App\Http\Controllers\HistoryController;
 
     Route::view('/', 'index');
 
@@ -18,9 +20,9 @@
         ->name('profile');
 
 
-        Route::get('/', function () {
-            return view('index');
-        });
+    Route::get('/', function () {
+        return view('index');
+    });
 
     Route::get('/', [HomeController::class, 'index'])->name('index');
 
@@ -30,4 +32,10 @@
 
     Route::get('/chief-designers', [ChiefDesignerController::class, 'index'])->name('chief-designers.index');
 
-    require __DIR__.'/auth.php';
+    Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
+
+    Route::get('/contact', [ContactController::class, 'index'])->name('contacts.index');
+
+    Route::get('/histories', [HistoryController::class, 'index'])->name('histories.index');
+
+    require __DIR__ . '/auth.php';

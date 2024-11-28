@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Industry;
 use App\Models\News;
 use App\Models\ChiefDesigner;
+use App\Models\Airplane;
+use App\Models\Contact;
+use App\Models\History; 
 
 class HomeController extends Controller
 {
@@ -14,7 +17,10 @@ class HomeController extends Controller
         $industries = Industry::all(); 
         $news = News::all(); 
         $chiefDesigners = ChiefDesigner::all();
+        $airplanes = Airplane::all(); 
+        $contacts = Contact::all(); 
+        $histories = History::all(); 
 
-        return view('index', compact('industries', 'news', 'chiefDesigners'));
+        return view('index', compact('industries', 'news', 'chiefDesigners', 'airplanes', 'contacts', 'histories'));
     }
 }

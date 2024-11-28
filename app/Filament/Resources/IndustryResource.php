@@ -24,12 +24,13 @@ class IndustryResource extends Resource
         return $form
             ->schema([
                 //
-            Forms\Components\TextInput::make('name')
-                ->required()
-                ->label('Industry Name'),
-            Forms\Components\FileUpload::make('image')
-                ->label('Image')
-                ->image(),
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->label('Industry Name'),
+                Forms\Components\FileUpload::make('image')
+                    ->required()
+                    ->label('Image')
+                    ->image(),
             ]);
     }
 
@@ -46,6 +47,7 @@ class IndustryResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
