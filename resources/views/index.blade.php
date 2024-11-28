@@ -320,10 +320,21 @@
                 </div>
             </div>
             <div class="media-icons mt-[100px]">
-                <a href="https://www.facebook.com/antonov.company/photos/" target="_blank" class="icon text-black text-2xl m-[60px]"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/antonov_company/?ref=%22nofollow%22&hl=id" target="_blank" class="icon text-black text-2xl m-[60px]"><i class="fab fa-instagram"></i></a>
-                <a href="https://twitter.com/AntonovCompany" target="_blank" class="icon"><i class="fab fa-twitter text-black text-2xl m-[60px]"></i></a>
-                <a href="https://www.youtube.com/@AntonovCompany" target="_blank" class="icon"><i class="fab fa-youtube text-black text-2xl m-[60px]"></i></a>
+                @foreach ($socialLinks as $socialLink)
+                <a href="{{ $socialLink->url }}" target="_blank" class="icon text-black text-2xl m-[60px]">
+                    @if($socialLink->platform == 'Facebook')
+                    <i class="fab fa-facebook"></i>
+                    @elseif($socialLink->platform == 'Instagram')
+                    <i class="fab fa-instagram"></i>
+                    @elseif($socialLink->platform == 'Twitter')
+                    <i class="fab fa-twitter"></i>
+                    @elseif($socialLink->platform == 'YouTube')
+                    <i class="fab fa-youtube"></i>
+                    @elseif($socialLink->platform == 'LinkedIn') <!-- Tambahkan kondisi LinkedIn -->
+                    <i class="fab fa-linkedin"></i>
+                    @endif
+                </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -380,13 +391,15 @@
                 </div>
             </div>
     </section>
+
+    <!--Contact Us-->
     <section class="sec-03 mb-24 py-20 px-24">
         <div class="relative flex justify-center items-center flex-col z-1">
             <h3 class="section-title text-[3em] mb-[80px] scroll-mt-[140px]" id="contact">Contact Us</h3>
             <div class="content relative w-[1150px] flex justify-center items-center">
-                <div class="media-info w-[400px] ml-[50px]">
+                <div class="media-info w-[400px]">
                     @foreach($contacts as $contact)
-                    <li class="list-none text-[1.4em] mb-5 pl-[3rem]">
+                    <li class="list-none text-[1.4em] mb-4 pl-[3rem] text-right mr-[150px]">
                         <a href="{{ $contact->url }}" target="_blank">
                             <i class="fa {{ 
                                 $contact->platform == 'Twitter' ? 'fa-twitter' : 
@@ -396,7 +409,6 @@
                             </i>
                             {{ $contact->platform }}
                         </a>
-
                     </li>
                     @endforeach
                 </div>
@@ -424,12 +436,23 @@
         <p>Antonov Company (Ukrainian: Державне підприємство «Антонов»), formerly the Aeronautical Scientific-Technical Complex <br>named after Antonov (Antonov ASTC) (Ukrainian: Авіаційний науково-технічний комплекс імені Антонова,<br>
             [АНТК ім. Антонова]), </p>
         <div>
-            <a href="https://www.facebook.com/antonov.company/photos/" target="_blank"><i class="fab fa-facebook text-[#1E90FF] mx-[13px] cursor-pointer py-[18px]"></i></a>
-            <a href="https://twitter.com/AntonovCompany" target="_blank"><i class="fab fa-twitter text-[#1E90FF] mx-[13px] cursor-pointer py-[18px]"></i></a>
-            <a href="https://www.instagram.com/antonov_company/?ref=%22nofollow%22&hl=id" target="_blank"><i class="fab fa-instagram text-[#1E90FF] mx-[13px] cursor-pointer py-[18px]"></i></a>
-            <a href="https://www.linkedin.com/company/antonovcompany" target="_blank"><i class="fab fa-linkedin text-[#1E90FF] mx-[13px] cursor-pointer py-[18px]"></i></a>
+            @foreach ($socialLinks as $socialLink)
+            <a href="{{ $socialLink->url }}" target="_blank" class="text-black">
+                @if($socialLink->platform == 'Facebook')
+                <i class="fab fa-facebook text-[#1E90FF] text-sm mx-[13px] py-[18px]"></i>
+                @elseif($socialLink->platform == 'Instagram')
+                <i class="fab fa-instagram text-[#1E90FF] text-sm mx-[13px] py-[18px]"></i>
+                @elseif($socialLink->platform == 'Twitter')
+                <i class="fab fa-twitter text-[#1E90FF] text-sm mx-[13px] py-[18px]"></i>
+                @elseif($socialLink->platform == 'YouTube')
+                <i class="fab fa-youtube text-[#1E90FF] text-sm mx-[13px] py-[18px]"></i>
+                @elseif($socialLink->platform == 'LinkedIn')
+                <i class="fab fa-linkedin text-[#1E90FF] text-sm mx-[13px] py-[18px]"></i>
+                @endif
+            </a>
+            @endforeach
         </div>
-        <p>www.antonov.com</p>
+        <p><a href="#">www.antonov.com</a></p>
     </section>
 
     <script src="//unpkg.com/alpinejs" defer></script>

@@ -29,29 +29,28 @@ class NewsResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->required(),
-                    Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'name') 
-                    ->required() 
-                    ->label('Author')                
+                Forms\Components\Select::make('user_id')
+                    ->relationship('user', 'name')
+                    ->required()
+                    ->label('Author')
             ]);
     }
-    
+
 
     public static function table(Table $table): Table
     {
-        return $table->
-        columns([
-            TextColumn::make('title')->sortable()->searchable(),
-            ImageColumn::make('image')->label('News Image'),
-            TextColumn::make('user.name')->label('Author'),
-            TextColumn::make('created_at')->dateTime()->label('Published At'),
-        ])->filters([
-            //
-        ])
-        ->actions([
-            Tables\Actions\EditAction::make(),
-            Tables\Actions\DeleteAction::make(),
-        ]);
+        return $table->columns([
+                TextColumn::make('title')->sortable()->searchable(),
+                ImageColumn::make('image')->label('News Image'),
+                TextColumn::make('user.name')->label('Author'),
+                TextColumn::make('created_at')->dateTime()->label('Published At'),
+            ])->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+            ]);
     }
 
     public static function getRelations(): array

@@ -8,6 +8,7 @@
     use App\Http\Controllers\AirplaneController;
     use App\Http\Controllers\ContactController;
     use App\Http\Controllers\HistoryController;
+    use App\Http\Controllers\SocialLinkController;
 
     Route::view('/', 'index');
 
@@ -37,5 +38,7 @@
     Route::get('/contact', [ContactController::class, 'index'])->name('contacts.index');
 
     Route::get('/histories', [HistoryController::class, 'index'])->name('histories.index');
+
+    Route::get('/social-links', [SocialLinkController::class, 'showSocialLinks']);
 
     require __DIR__ . '/auth.php';

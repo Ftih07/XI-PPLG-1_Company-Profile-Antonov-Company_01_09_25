@@ -9,6 +9,7 @@ use App\Models\ChiefDesigner;
 use App\Models\Airplane;
 use App\Models\Contact;
 use App\Models\History; 
+use App\Models\SocialLink; // Tambahkan import untuk model SocialLink
 
 class HomeController extends Controller
 {
@@ -20,7 +21,8 @@ class HomeController extends Controller
         $airplanes = Airplane::all(); 
         $contacts = Contact::all(); 
         $histories = History::all(); 
+        $socialLinks = SocialLink::all(); // Ambil semua data SocialLink
 
-        return view('index', compact('industries', 'news', 'chiefDesigners', 'airplanes', 'contacts', 'histories'));
+        return view('index', compact('industries', 'news', 'chiefDesigners', 'airplanes', 'contacts', 'histories', 'socialLinks'));
     }
 }
