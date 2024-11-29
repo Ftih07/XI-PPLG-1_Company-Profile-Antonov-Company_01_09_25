@@ -10,7 +10,7 @@ class ContactController extends Controller
     //
     public function show()
     {
-        $contacts = Contact::all();  // Mengambil semua data kontak
-        return view('index', compact('contacts'));  // Menampilkan data di view 'contact.blade.php'
+        $contacts = Contact::all();  
+        return view('index', compact('contacts'));  
     }
 }

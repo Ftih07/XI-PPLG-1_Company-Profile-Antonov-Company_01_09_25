@@ -2,13 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Menambahkan gaya untuk nav yang sticky */
-h1{
+h1 {
     font-size: 36px;
     font-weight: 600;
 }
 
-p{
+p {
     color: #777;
     font-size: 14px;
     font-weight: 300;
@@ -16,19 +15,13 @@ p{
     padding: 10px;
 }
 
+/*CSS Custom Animasi Navbar*/
 .sticky {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
 }
-.nav-links {
-    transition: right 0.3s ease-in-out;
-}
-nav.sticky {
-    background-color: rgba(0, 0, 0, 0.8); /* Warna background saat sticky */
-    padding: 1% 6%; /* Menyusutkan padding saat sticky */
+
+.navbar-scrolled {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .nav-links ul li::after {
@@ -44,35 +37,15 @@ nav.sticky {
     width: 100%;
 }
 
+/*CSS Custom Tampilan Antonov Airplanes*/
 .row {
     margin-top: 5%;
     margin-bottom: 10%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-.picture {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-    padding-top: 50px;
-}
-
-.picture-col {
-    flex-basis: 32%;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-}
-
-.picture-col img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    display: block;
-}
-/*layerr*/
+/*CSS Custom Layer Animasi Top Antonov Airplanes*/
 .layer {
     background: transparent;
     height: 100%;
@@ -102,56 +75,7 @@ nav.sticky {
     opacity: 1;
 }
 
-/*contact and footer*/
-
-.banner {
-    margin: 100px auto;
-    min-height: 140vh;
-    width: 100%;
-    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
-        url(assets/img/Banner/airlines-contacts-bg.jpg);
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    text-align: center;
-}
-.banner img {
-    position: center;
-    padding-top: 15%;
-}
-
-.banner h1 {
-    color: #fff;
-    font-size: 62px;
-}
-.banner h4 {
-    color: #dadada;
-    font-size: 33px;
-}
-.banner p {
-    font-size: 23px;
-    color: #b5b5b5;
-}
-
-.footer {
-    width: 100%;
-    text-align: center;
-    padding: 30px 0;
-}
-.footer h4 {
-    margin-bottom: 25px;
-    margin-top: 20px;
-    font-weight: 600;
-}
-.icons .fab {
-    color: #1e90ff;
-    margin: 0 13px;
-    cursor: pointer;
-    padding: 18px 0;
-}
-
-/*anomali*/
-
+/*CSS Custom Video History*/
 .home {
     position: relative;
     width: 100%;
@@ -284,124 +208,46 @@ nav.sticky {
     transition: 2s ease;
     transition-property: clip-path;
 }
-
-/*Anomali Aviation Safety*/
-
-.sec-01 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 80px 100px;
-    color: #111222;
+/* Animasi modal (news, history, dan antonov airplanes */
+.modal-content {
+    max-height: 80%;
+    margin: 2rem auto;
+    overflow-y: auto; 
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+    transform: scale(0.95);
+    animation: scaleUp 0.3s ease-in-out forwards;
 }
 
-.container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1;
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
-.main-title {
-    font-size: 3em;
-    margin-bottom: 50px;
+.close-btn {
+    font-size: 1.5rem;
+    color: #555;
+    transition: color 0.2s ease-in-out;
 }
 
-.content {
-    position: relative;
-    width: 1150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.close-btn:hover {
+    color: #e63946;
 }
 
-.content .image {
-    position: relative;
-    width: 800px;
-    height: 400px;
-    overflow: hidden;
+.modal-content h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #2c3e50;
 }
 
-.content .image img {
-    z-index: 111;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.content .text-box2 {
-    z-index: 222;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(20px);
-    padding: 40px;
-    max-width: 400px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    transform: translate(-80px, 50px);
-}
-
-.content .text-box2 h3 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-.content .text-box2 p {
-    font-size: 12px;
-}
-.media-icons {
-    margin-top: 100px;
-}
-
-.media-icons a {
-    color: #000;
-    font-size: 2em;
-    margin: 60px;
-}
-.section-title {
-    font-size: 3em;
-    margin-bottom: 80px;
-}
-.info-title {
-    font-size: 1.8em;
-    margin-bottom: 50px;
-}
-.info {
-    width: 700px;
-    margin-left: 50px;
-}
-
-.media-info {
-    width: 400px;
-    margin-left: 50px;
-}
-.media-info li {
-    list-style: none;
-    font-size: 1.4em;
-}
-.media-info li a {
-    color: #000;
-    text-decoration: none;
-}
-.media-info li:not(:last-child) {
-    margin-bottom: 50px;
-}
-.media-info li:nth-child(1),
-.media-info li:nth-child(4) {
-    padding-left: 50px;
-}
-
-.sec-02 {
-    padding: 80px 100px;
-}
-#safety {
-    scroll-margin-top: 50px;
-}
-#contact {
-    scroll-margin-top: 140px;
+.modal-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4a4a4a;
 }

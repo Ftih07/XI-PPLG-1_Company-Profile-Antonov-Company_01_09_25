@@ -12,7 +12,6 @@ class SocialLinkController extends Controller
     {
         $socialLinks = SocialLink::all();
 
-        // Mengirim data ke view 'your-view'
         return view('index', compact('socialLinks'));
     }
 }
