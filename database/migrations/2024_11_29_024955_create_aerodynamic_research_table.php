@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('heading')->nullable();
             $table->string('subheading')->nullable();
             $table->text('description')->nullable();
-            $table->string('img')->required();  // Kolom gambar
-            $table->integer('section');         // Menandakan section (sec-01, sec-02, dll)
+            $table->string('img')->required(); 
+            $table->integer('section');         
             $table->timestamps();
         });
     }

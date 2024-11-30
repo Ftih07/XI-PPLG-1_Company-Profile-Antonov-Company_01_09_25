@@ -4,19 +4,30 @@
 <head>
     <meta name="viewport" content="with=device-width, initial-scale=1.0">
     <title>Antonov Company</title>
+
+    <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Load Google Fonts (Poppins) -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Load Font Awesome 4.7.0 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Load Font Awesome 5.15.4 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Load ScrollReveal -->
     <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- Vite CSS -->
     @vite('resources/css/app.css')
 </head>
 
@@ -33,28 +44,29 @@
             </a>
 
             <!-- Navigation Links -->
-            <div class="nav-links flex justify-between items-center w-full px-4" id="navLinks">
+            <div class="nav-links sm:flex sm:justify-between sm:items-center sm:w-full sm:px-4" id="navLinks">
                 <!-- Menu Utama (Tengah) -->
-                <div class="flex space-x-4 mx-auto">
+                <div class="sm:flex sm:space-x-4 sm:mx-auto">
                     <i class="fa fa-times hidden" onclick="hideMenu()"></i>
 
-                    <ul class="flex space-x-4">
-                        <li>
-                            <a href="#home" class="text-white text-sm no-underline p-2">Home</a>
+                    <ul class="sm:flex sm:space-x-4 sm:mb-[-20px]">
+                        <li class="mb-4">
+                            <a href="#home" class="text-white sm:text-sm no-underline sm:p-2 text-base">Home</a>
                         </li>
-                        <li>
-                            <a href="#history" class="text-white text-sm no-underline p-2">History</a>
+                        <li class="mb-4">
+                            <a href="#history" class="text-white sm:text-sm no-underline sm:p-2 text-base">History</a>
                         </li>
-                        <li>
-                            <a href="#safety" class="text-white text-sm no-underline p-2">Aviation Safety</a>
+                        <li class="mb-4">
+                            <a href="#safety" class="text-white sm:text-sm no-underline sm:p-2 text-base">Aviation Safety</a>
                         </li>
-                        <li>
-                            <a href="#contact" class="text-white text-sm no-underline p-2">Contact Us</a>
+                        <li class="mb-4">
+                            <a href="#contact" class="text-white sm:text-sm no-underline sm:p-2 text-base">Contact Us</a>
                         </li>
-                        <li>
-                            <a href="{{ route('dashboard') }}" class="text-white text-sm no-underline p-2">Dashboard</a>
+                        <li class="mb-4">
+                            <a href="{{ route('dashboard') }}" class="text-white sm:text-sm no-underline sm:p-2 text-base">Dashboard</a>
                         </li>
                     </ul>
+
                 </div>
 
                 <!-- Authentication (Sebelah Kanan) -->
@@ -62,8 +74,8 @@
                     @if (Route::has('login'))
                     @auth
                     <!-- Dropdown for logged-in users -->
-                    <div x-data="{ open: false }" class="relative">
-                        <button @click="open = !open" class="text-white text-sm no-underline p-2 flex items-center">
+                    <div x-data="{ open: false }" class="relative sm:p-0 p-4">
+                        <button @click="open = !open" class="text-white text-base no-underline p-2 flex items-center">
                             <span>{{ auth()->user()->name }}</span>
                             <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
@@ -111,7 +123,7 @@
         <p class="text-gray-700 text-sm font-light p-3">Antonov Company Last News</p>
         <div class="mt-5 mb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             @foreach ($news as $item)
-            <div class="bg-[#D6CFC7] rounded-lg mb-8 transition duration-500 py-6 hover:shadow-[0_0_40px_0px_rgba(0,0,0,0.2)]">
+            <div class="bg-[#D6CFC7] rounded-lg overflow-hidden transition duration-500 hover:shadow-[0_0_40px_0px_rgba(0,0,0,0.2)]">
                 <a class="no-underline text-black" href="#" data-bs-toggle="modal" data-bs-target="#newsModal"
                     data-title="{{ $item->title }}"
                     data-content="{{ strip_tags($item->content) }}"
@@ -119,9 +131,11 @@
                     data-author="{{ $item->user ? $item->user->name : 'Unknown' }}">
                     <!-- Gambar Berita -->
                     @if($item->image)
-                    <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" class="w-full object-cover rounded-t-lg h-50">
+                    <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}"
+                        class="w-full h-64 object-cover">
                     @else
-                    <img src="https://via.placeholder.com/600x400" alt="Placeholder Image" class="w-full object-cover rounded-t-lg h-50">
+                    <img src="https://via.placeholder.com/600x400" alt="Placeholder Image"
+                        class="w-full h-64 object-cover">
                     @endif
                     <div class="p-4">
                         <h3 class="text-xl font-bold">
@@ -271,7 +285,6 @@
     </section>
 
 
-
     <!-- Chief Designers Section -->
     <section class="w-[90%] sm:w-[80%] mx-auto text-center pt-[100px]">
         <h1 class="text-3xl font-bold mb-10">Chief Designers</h1>
@@ -314,7 +327,6 @@
     </section>
 
 
-
     <!-- Section 1 -->
     <section id="safety" class="sec-01 scroll-mt-[50px] relative flex justify-center items-center py-20 px-6 sm:px-12 md:px-24 text-[#111222]">
         @foreach ($data1 as $item)
@@ -329,7 +341,7 @@
                     <p class="text-xs sm:text-sm">{{ $item->description }}</p>
                 </div>
             </div>
-            <div class="media-icons mt-8 sm:mt-[100px]">
+            <div class="media-icons mt-8 sm:mt-[100px] flex flex-wrap justify-center items-center">
                 @foreach ($socialLinks as $socialLink)
                 <a href="{{ $socialLink->url }}" target="_blank" class="icon text-black text-2xl sm:text-3xl m-[20px] sm:m-[60px]">
                     @if($socialLink->platform == 'Facebook')
@@ -452,12 +464,13 @@
 
     <!----Social Link and footer-->
 
-    <section class="my-[100px] mx-auto min-h-[140vh] w-full bg-center bg-cover bg-[linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url('/public/assets/img/Banner/airlines-contacts-bg.jpg')] relative text-center flex flex-col items-center pt-[15%]">
-        <img src="assets/img/logo/logo2.png" class="mb-4">
+    <section class="my-[100px] mx-auto justify-center min-h-screen sm:min-h-[140vh] w-full bg-center bg-cover bg-[linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url('/public/assets/img/Banner/airlines-contacts-bg.jpg')] relative text-center flex flex-col items-center">
+        <img src="assets/img/logo/logo2.png" class="mb-4 max-w-xs sm:max-w-sm">
         <h1 class="text-white text-2xl sm:text-6xl">ANTONOV COMPANY</h1>
         <h4 class="text-[#dadada] text-[20px] sm:text-[33px]">NO OTHER NAME CARRIES MORE WEIGHT</h4>
         <p class="text-[#b5b5b5] text-[20px] sm:text-[23px]">Charter air transportation of oversized and extra heavy loads worldwide</p>
     </section>
+
     <section class="w-full text-center py-[30px]">
         <h4 class="mb-[25px] mt-[20px] font-semibold">About Us</h4>
         <p>Antonov Company (Ukrainian: Державне підприємство «Антонов»), formerly the Aeronautical Scientific-Technical Complex <br>named after Antonov (Antonov ASTC) (Ukrainian: Авіаційний науково-технічний комплекс імені Антонова,<br>

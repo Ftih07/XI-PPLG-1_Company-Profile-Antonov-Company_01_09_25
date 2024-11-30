@@ -9,10 +9,8 @@ class AerodynamicResearch extends Model
 {
     use HasFactory;
 
-    // Tentukan nama tabel
     protected $table = 'aerodynamic_research';
 
-    // Tentukan kolom yang dapat diisi
     protected $fillable = [
         'heading',
         'subheading',
@@ -21,7 +19,6 @@ class AerodynamicResearch extends Model
         'section',
     ];
 
-    // Tentukan kolom yang harus diubah menjadi tipe data tanggal
     protected $dates = [
         'created_at',
         'updated_at',

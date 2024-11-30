@@ -9,8 +9,8 @@ use App\Models\ChiefDesigner;
 use App\Models\Airplane;
 use App\Models\Contact;
 use App\Models\History;
-use App\Models\SocialLink; // Tambahkan import untuk model SocialLink
-use App\Models\AerodynamicResearch; // Tambahkan import untuk model AerodynamicResearch
+use App\Models\SocialLink; 
+use App\Models\AerodynamicResearch; 
 
 class HomeController extends Controller
 {
@@ -22,9 +22,8 @@ class HomeController extends Controller
         $airplanes = Airplane::all();
         $contacts = Contact::all();
         $histories = History::all();
-        $socialLinks = SocialLink::all(); // Ambil semua data SocialLink
+        $socialLinks = SocialLink::all(); 
 
-        // Ambil data dari AerodynamicResearch berdasarkan section
         $data1 = AerodynamicResearch::where('section', 1)->get();
         $data2 = AerodynamicResearch::where('section', 2)->get();
         $data3 = AerodynamicResearch::where('section', 3)->get();

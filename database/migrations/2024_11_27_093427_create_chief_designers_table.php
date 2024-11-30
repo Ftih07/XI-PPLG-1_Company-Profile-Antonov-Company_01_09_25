@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('chief_designers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');          // Nama Chief Designer
-            $table->string('period');        // Periode (misalnya: 1946–1984)
-            $table->string('image')->nullable(); // Gambar Chief Designer
-            $table->text('description');     // Deskripsi singkat
+            $table->string('name');         
+            $table->string('period');       
+            $table->string('image')->nullable(); 
+            $table->text('description');     
             $table->timestamps();
         });
     }

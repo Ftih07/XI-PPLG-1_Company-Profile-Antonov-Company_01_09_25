@@ -17,7 +17,7 @@ class AerodynamicResearchResource extends Resource
 {
     protected static ?string $model = AerodynamicResearch::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cog';
 
     public static function form(Form $form): Form
     {
@@ -56,7 +56,6 @@ class AerodynamicResearchResource extends Resource
                 Tables\Columns\TextColumn::make('section'),
             ])
             ->filters([
-                // Filters based on section, for example
                 Tables\Filters\SelectFilter::make('section')
                     ->options([
                         1 => 'sec-01',
@@ -65,7 +64,6 @@ class AerodynamicResearchResource extends Resource
                         4 => 'sec-04',
                         5 => 'sec-05',
                         6 => 'sec-06',
-                        // add more as needed
                     ]),
             ])
             ->actions([

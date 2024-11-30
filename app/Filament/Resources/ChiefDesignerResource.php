@@ -17,7 +17,7 @@ class ChiefDesignerResource extends Resource
 {
     protected static ?string $model = ChiefDesigner::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
@@ -57,7 +57,7 @@ class ChiefDesignerResource extends Resource
                 ->label('Image'),
             Tables\Columns\TextColumn::make('description')
                 ->label('Description')
-                ->limit(50), // Batasi deskripsi yang ditampilkan
+                ->limit(50), 
             ])
             ->filters([
                 //

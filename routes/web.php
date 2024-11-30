@@ -26,19 +26,12 @@
     });
 
     Route::get('/', [HomeController::class, 'index'])->name('index');
-
     Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-
     Route::get('/industries', [IndustryController::class, 'index'])->name('industries.index');
-
     Route::get('/chief-designers', [ChiefDesignerController::class, 'index'])->name('chief-designers.index');
-
     Route::get('/airplanes', [AirplaneController::class, 'index'])->name('airplanes.index');
-
     Route::get('/contact', [ContactController::class, 'index'])->name('contacts.index');
-
     Route::get('/histories', [HistoryController::class, 'index'])->name('histories.index');
-
     Route::get('/social-links', [SocialLinkController::class, 'showSocialLinks']);
 
     require __DIR__ . '/auth.php';

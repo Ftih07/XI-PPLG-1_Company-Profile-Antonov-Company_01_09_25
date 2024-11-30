@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('platform'); // Misalnya: 'Twitter', 'Instagram', 'Whatsapp', 'Email'
-            $table->string('url'); // URL atau nomor telepon/email
+            $table->string('platform'); 
+            $table->string('url');
             $table->timestamps();
         });
     }

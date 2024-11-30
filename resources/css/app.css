@@ -14,6 +14,43 @@ p {
     line-height: 22px;
     padding: 10px;
 }
+section {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/*CSS Custom Navbar Responsif*/
+@media(max-width: 700px){
+    .text-box h1{
+        font-size: 20px;
+    }
+    .nav-links ul li{
+        display: block;
+    }
+    .nav-links{    
+        position: absolute;
+        background: #1E90FF;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+
+    }
+    nav .fa{
+        display:block;
+        color: #fff;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+    .nav-links ul{
+        padding: 30px;
+    }
+}
 
 /*CSS Custom Animasi Navbar*/
 .sticky {
@@ -250,4 +287,9 @@ p {
     font-size: 1rem;
     line-height: 1.8;
     color: #4a4a4a;
+}
+@media screen and (max-width: 768px) {
+    .nav-btn {
+        margin-top: -50%;
+    }
 }

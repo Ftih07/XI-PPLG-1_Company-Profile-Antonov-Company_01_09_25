@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     sliderNav(0);
 });
 
+
 // Aviation Safety
 ScrollReveal({
     reset: true,
@@ -98,6 +99,7 @@ newsModal.addEventListener('show.bs.modal', function (event) {
     console.log('Author:', author);
 });
 
+
 //Nav Animations
 window.addEventListener('scroll', function () {
     const navbar = document.getElementById('navbar');
@@ -116,6 +118,7 @@ window.addEventListener('scroll', function () {
     }
 });
 
+
 // Chief Designers Modal
 document.querySelectorAll('[data-modal-toggle]').forEach((item) => {
     item.addEventListener('click', (event) => {
@@ -133,10 +136,8 @@ document.querySelectorAll('[data-modal-hide]').forEach((item) => {
     });
 });
 
-// Close modal when clicking outside of modal content
 document.querySelectorAll('.modal').forEach((modal) => {
     modal.addEventListener('click', (event) => {
-        // Close the modal if the click happens outside the modal-content
         if (event.target === modal) {
             modal.classList.add('hidden');
         }
@@ -160,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
 // Video History Modal
 function showModal(element) {
     var description = element.getAttribute('data-description');
@@ -169,11 +171,10 @@ function showModal(element) {
     var modal = document.getElementById('modal');
     modal.style.display = 'flex';
 
-    // Tambahkan event listener untuk klik di luar modal
     modal.addEventListener('click', function (event) {
         var modalContent = document.querySelector('.modal-content');
         if (!modalContent.contains(event.target)) {
-            closeModal(); // Tutup modal jika klik di luar modal-content
+            closeModal(); 
         }
     });
 }
@@ -182,9 +183,9 @@ function closeModal() {
     var modal = document.getElementById('modal');
     modal.style.display = 'none';
 
-    // Bersihkan event listener untuk mencegah penumpukan event
     modal.removeEventListener('click', closeModal);
 }
+
 
 //Nav
 var navLinks = document.getElementById("navLinks");

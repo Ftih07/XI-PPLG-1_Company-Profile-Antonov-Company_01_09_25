@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('social_links', function (Blueprint $table) {
             $table->id();
-            $table->string('platform');  // Facebook, Instagram, Twitter, etc.
-            $table->string('url');       // Link media sosial
+            $table->string('platform');  
+            $table->string('url');       
             $table->timestamps();
         });
     }
